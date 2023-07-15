@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{e6f45ff7-a420-4003-b73c-6f3974e53af7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Audio">
+      <UniqueIdentifier>{250f8513-272f-4a27-938e-fbd89ac3c6be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AVWrappers">
+      <UniqueIdentifier>{742baf4d-e26c-4095-a91e-5043a24bf0a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Video">
+      <UniqueIdentifier>{37c69680-0792-4131-bcef-1f782fa749aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Demux">
+      <UniqueIdentifier>{6a9c90c1-b944-401d-897d-edad64eb9315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\VideoOutput">
+      <UniqueIdentifier>{549d5ca1-15b2-4666-a7b5-7f1f24ea41fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Visualization">
+      <UniqueIdentifier>{c0f20eb4-1ca7-4993-bfc6-19f575b112aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Widgets">
+      <UniqueIdentifier>{a39c3d43-2410-4087-9910-9c3acda99bad}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="QtPlay.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Common\AudioParams.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Clock.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\CThread.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Decoder.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Main.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\PacketQueue.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\PlayerContext.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\QtPlayCommon.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\AudioThread.cpp">
+      <Filter>Source Files\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="AVWrappers\AVChannelLayoutRAII.cpp">
+      <Filter>Source Files\AVWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="AVWrappers\Frame.cpp">
+      <Filter>Source Files\AVWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="AVWrappers\Packet.cpp">
+      <Filter>Source Files\AVWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="AVWrappers\Stream.cpp">
+      <Filter>Source Files\AVWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="AVWrappers\Subtitle.cpp">
+      <Filter>Source Files\AVWrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\VideoThread.cpp">
+      <Filter>Source Files\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Demux\DemuxThread.cpp">
+      <Filter>Source Files\Demux</Filter>
+    </ClCompile>
+    <ClCompile Include="Demux\SeekInfo.cpp">
+      <Filter>Source Files\Demux</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoOutput\GLCommon.cpp">
+      <Filter>Source Files\VideoOutput</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoOutput\GLWidget.cpp">
+      <Filter>Source Files\VideoOutput</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoOutput\GLWindow.cpp">
+      <Filter>Source Files\VideoOutput</Filter>
+    </ClCompile>
+    <ClCompile Include="Visualizations\VisCommon.cpp">
+      <Filter>Source Files\Visualization</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\CSlider.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\LoggerDock.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\LoggerWidget.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\MainWindow.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\MenuBar.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\Playlist.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\RDFTDock.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\StatusBar.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\ToolBar.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\VideoDisplayWidget.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\VideoDock.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets\WaveDock.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common\AudioParams.hpp">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Clock.hpp">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Decoder.hpp">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\PacketQueue.hpp">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\PlayerContext.hpp">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\QtPlayCommon.hpp">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\QtPlaySDL.hpp">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\AudioBuffer.hpp">
+      <Filter>Source Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="AVWrappers\AVChannelLayoutRAII.hpp">
+      <Filter>Source Files\AVWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="AVWrappers\Frame.hpp">
+      <Filter>Source Files\AVWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="AVWrappers\Packet.hpp">
+      <Filter>Source Files\AVWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="AVWrappers\Stream.hpp">
+      <Filter>Source Files\AVWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="AVWrappers\Subtitle.hpp">
+      <Filter>Source Files\AVWrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\SupportedPixFmts.hpp">
+      <Filter>Source Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Demux\SeekInfo.hpp">
+      <Filter>Source Files\Demux</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoOutput\GLCommon.hpp">
+      <Filter>Source Files\VideoOutput</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoOutput\GLShaders.hpp">
+      <Filter>Source Files\VideoOutput</Filter>
+    </ClInclude>
+    <ClInclude Include="Visualizations\AudioFrameF.hpp">
+      <Filter>Source Files\Visualization</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Common\CThread.hpp">
+      <Filter>Source Files\Common</Filter>
+    </QtMoc>
+    <QtMoc Include="Audio\AudioThread.hpp">
+      <Filter>Source Files\Audio</Filter>
+    </QtMoc>
+    <QtMoc Include="Video\VideoThread.hpp">
+      <Filter>Source Files\Video</Filter>
+    </QtMoc>
+    <QtMoc Include="Demux\DemuxThread.hpp">
+      <Filter>Source Files\Demux</Filter>
+    </QtMoc>
+    <QtMoc Include="VideoOutput\GLWidget.hpp">
+      <Filter>Source Files\VideoOutput</Filter>
+    </QtMoc>
+    <QtMoc Include="VideoOutput\GLWindow.hpp">
+      <Filter>Source Files\VideoOutput</Filter>
+    </QtMoc>
+    <QtMoc Include="Visualizations\VisCommon.hpp">
+      <Filter>Source Files\Visualization</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\CSlider.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\LoggerDock.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\LoggerWidget.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\MainWindow.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\MenuBar.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\Playlist.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\RDFTDock.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\StatusBar.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\ToolBar.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\VideoDisplayWidget.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\VideoDock.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\WaveDock.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+  </ItemGroup>
+</Project>
