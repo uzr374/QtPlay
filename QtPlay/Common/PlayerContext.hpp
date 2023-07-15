@@ -67,7 +67,7 @@ struct PlayerContext final {
       0.0;  // maximum duration of a frame - above this, we consider the jump a
             // timestamp discontinuity
 
-  PlayerContext(const std::string& url, std::float_t audio_volume,
+  explicit PlayerContext(const std::string& url, std::float_t audio_volume,
                 std::vector<VisCommon*> aviss);
   ~PlayerContext();
 
