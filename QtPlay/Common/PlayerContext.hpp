@@ -36,6 +36,7 @@ struct PlayerContext final {
   int64_t last_seek_pos = 0LL, last_seek_rel = 0LL;
   std::atomic<double> stream_duration = NAN;
   int seek_by_bytes = -1;
+  std::atomic_bool demuxer_eof = false;
 
   Clock audclk;
   Clock vidclk;
@@ -78,6 +79,10 @@ struct PlayerContext final {
   void seek_by_percent(double percent);
   void toggle_pause();
   void toggle_mute();
+
+  void notifyEOF();
+  bool demuxerEOF() const { return demuxer_eof.load(std::memory_order_acquire); }
+  void setDemuxerEOF(bool eof) { demuxer_eof.store(eof, std::memory_order_release); }
 };
 
 inline GLWindow* videoWidget = nullptr;

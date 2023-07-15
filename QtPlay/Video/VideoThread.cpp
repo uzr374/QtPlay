@@ -132,7 +132,7 @@ void VideoThread::run() {
       }
     }
 
-    local_eof = filtered_frames.empty() && ctx.viddec.eof_state;
+    local_eof = ctx.viddec.eof_state && filtered_frames.empty() && ctx.demuxerEOF();
     step_pending = step_pending && !local_eof;
     const bool paused = (local_paused && !step_pending) || local_eof;
 

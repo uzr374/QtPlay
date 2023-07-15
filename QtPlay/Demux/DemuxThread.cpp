@@ -329,8 +329,8 @@ bool demux_check_buffer_fullness(const PlayerContext& ctx,
        audioq_duration = 0LL;
   auto audio_has_enough_packets = false, video_has_enough_packets = false;
 
-  constexpr auto MAX_QUEUE_SIZE = (20LL * 1024LL * 1024LL);
-  constexpr auto MIN_FRAMES = 25;
+  constexpr auto MAX_QUEUE_SIZE = (50LL * 1024LL * 1024LL);
+  constexpr auto MIN_FRAMES = 100;
 
   auto queue_is_full = [](const Stream& st, int64_t nb_pkts,
                           int64_t dur) -> bool {
@@ -558,6 +558,7 @@ void DemuxThread::run() {
         if (((read_res == AVERROR_EOF) || (ic->pb && avio_feof(ic->pb))) &&
             !eof) {
           eof = true;
+          ctx.setDemuxerEOF(eof);
           ctx.videoq.put_nullpacket(ctx.video_stream, true);
           ctx.audioq.put_nullpacket(ctx.audio_stream, true);
           ctx.subtitleq.put_nullpacket(ctx.subtitle_stream, true);
@@ -569,6 +570,7 @@ void DemuxThread::run() {
         wait_timeout();
       } else {
         eof = false;
+        ctx.setDemuxerEOF(eof);
         const auto pkt_st_idx = pkt.streamIndex();
         if (pkt_st_idx >= 0 &&
             pkt_st_idx < ic->nb_streams) {  // Avoid reading garbage if input is

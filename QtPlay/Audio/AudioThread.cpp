@@ -350,7 +350,7 @@ void AudioThread::run() {
 
     const auto arbuf_empty = ctx.audio_rbuf.isEmpty();
     local_eof = ctx.auddec.eof_state && arbuf_empty && resampled_data.empty() &&
-                filtered_frames.empty();
+                filtered_frames.empty() && ctx.demuxerEOF();
     step_pending &= !local_eof;
     const auto paused = (local_paused || local_eof) && !step_pending;
     const auto adev_stat = SDL_GetAudioDeviceStatus(audio_dev);
