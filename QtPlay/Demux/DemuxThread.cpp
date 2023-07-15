@@ -189,7 +189,7 @@ void handle_seeking(PlayerContext& ctx, AVFormatContext* ic, bool& eof_flag,
     } else if (seek_info.st_idx_to_open >= 0) {
     }
   } else {
-    /*Don't bother to seek in unseekable stream*/
+    /*Don't bother to seek in an unseekable stream*/
     if ((ic->ctx_flags & AVFMTCTX_UNSEEKABLE)) {
       return;
     }
