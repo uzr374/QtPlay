@@ -147,6 +147,12 @@
     <ClCompile Include="Widgets\WaveDock.cpp">
       <Filter>Source Files\Widgets</Filter>
     </ClCompile>
+    <ClCompile Include="PlaybackEventFilter.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="QtPlayGUI.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\AudioParams.hpp">
@@ -203,6 +209,8 @@
     <ClInclude Include="Visualizations\AudioFrameF.hpp">
       <Filter>Source Files\Visualization</Filter>
     </ClInclude>
+    <ClInclude Include="PlaybackEventFilter.hpp" />
+    <ClInclude Include="QtPlayGUI.hpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Common\CThread.hpp">

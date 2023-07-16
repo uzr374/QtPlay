@@ -518,11 +518,12 @@ void DemuxThread::run() {
     } else {
       if ((!ctx.audio_thr || ctx.audio_thr->eofReached()) &&
           (!ctx.video_thr || ctx.video_thr->eofReached())) {
-        if (loop) {
+          ctx.notifyEOF();
+        /*if (loop) {
           ctx.request_seek(false, 0.0);
         } else if (autoexit) {
           break;
-        }
+        }*/
       }
     }
 

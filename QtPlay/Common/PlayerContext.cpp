@@ -55,3 +55,5 @@ void PlayerContext::seek_by_incr(double incr) {
 void PlayerContext::seek_by_percent(double percent) {
   request_seek(false, percent);
 }
+
+void PlayerContext::notifyEOF(){ }

@@ -122,6 +122,8 @@
     <ClCompile Include="Common\QtPlayCommon.cpp" />
     <ClCompile Include="Demux\DemuxThread.cpp" />
     <ClCompile Include="Demux\SeekInfo.cpp" />
+    <ClCompile Include="PlaybackEventFilter.cpp" />
+    <ClCompile Include="QtPlayGUI.cpp" />
     <ClCompile Include="VideoOutput\GLCommon.cpp" />
     <ClCompile Include="VideoOutput\GLWidget.cpp" />
     <ClCompile Include="VideoOutput\GLWindow.cpp" />
@@ -148,6 +150,8 @@
     <ClInclude Include="AVWrappers\Stream.hpp" />
     <ClInclude Include="AVWrappers\Subtitle.hpp" />
     <ClInclude Include="Demux\SeekInfo.hpp" />
+    <ClInclude Include="PlaybackEventFilter.hpp" />
+    <ClInclude Include="QtPlayGUI.hpp" />
     <ClInclude Include="VideoOutput\GLCommon.hpp" />
     <ClInclude Include="VideoOutput\GLShaders.hpp" />
     <ClInclude Include="Visualizations\AudioFrameF.hpp" />
