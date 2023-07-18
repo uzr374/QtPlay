@@ -147,11 +147,17 @@
     <ClCompile Include="Widgets\WaveDock.cpp">
       <Filter>Source Files\Widgets</Filter>
     </ClCompile>
-    <ClCompile Include="PlaybackEventFilter.cpp">
-      <Filter>Source Files\Common</Filter>
+    <ClCompile Include="Widgets\PlaybackEventFilter.cpp">
+      <Filter>Source Files\Widgets</Filter>
     </ClCompile>
-    <ClCompile Include="QtPlayGUI.cpp">
-      <Filter>Source Files\Common</Filter>
+    <ClCompile Include="Widgets\QtPlayGUI.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DislpayWidgetCommon.cpp">
+      <Filter>Source Files\Widgets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,8 +215,12 @@
     <ClInclude Include="Visualizations\AudioFrameF.hpp">
       <Filter>Source Files\Visualization</Filter>
     </ClInclude>
-    <ClInclude Include="PlaybackEventFilter.hpp" />
-    <ClInclude Include="QtPlayGUI.hpp" />
+    <ClInclude Include="Widgets\QtPlayGUI.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCore.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Common\CThread.hpp">
@@ -268,6 +278,12 @@
       <Filter>Source Files\Widgets</Filter>
     </QtMoc>
     <QtMoc Include="Widgets\WaveDock.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="DisplayWidgetCommon.hpp">
+      <Filter>Source Files\Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="Widgets\PlaybackEventFilter.hpp">
       <Filter>Source Files\Widgets</Filter>
     </QtMoc>
   </ItemGroup>

@@ -122,8 +122,6 @@ AVSampleFormat Frame::sampleFmt() const {
 }
 
 AVColorSpace Frame::colorspace() const {
-  if ((m_frame->colorspace == AVCOL_RANGE_UNSPECIFIED) && m_frame->height > 576)
-    return AVCOL_SPC_BT709;
   return m_frame->colorspace;
 }
 

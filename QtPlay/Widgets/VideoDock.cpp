@@ -1,6 +1,6 @@
 #include "VideoDock.hpp"
 
-VideoDock::VideoDock(QWidget* parent, LoggerWidget* logger)
+VideoDock::VideoDock(QWidget* parent)
     : QDockWidget(parent) {
   setObjectName("videoDock");
   setWindowTitle(tr("Video"));

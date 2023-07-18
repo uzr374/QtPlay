@@ -12,6 +12,6 @@ class VideoDock final : public QDockWidget {
   VideoDisplayWidget* vW = nullptr;
 
  public:
-  VideoDock(QWidget* parent, LoggerWidget* logger);
+  VideoDock(QWidget* parent);
   ~VideoDock();
 };

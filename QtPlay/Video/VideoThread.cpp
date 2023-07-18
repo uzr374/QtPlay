@@ -2,6 +2,9 @@
 
 #include "../Common/PlayerContext.hpp"
 #include "SupportedPixFmts.hpp"
+#include "../Widgets/QtPlayGUI.hpp"
+#include "../Widgets/VideoDisplayWidget.hpp"
+#include "../VideoOutput/GLWindow.hpp"
 
 using qtplay::logMsg;
 
@@ -9,6 +12,7 @@ VideoThread::VideoThread(PlayerContext& _ctx) : CThread(_ctx) {}
 VideoThread::~VideoThread() { CThread::joinOrTerminate(); }
 
 void VideoThread::run() {
+  const auto videoWidget = QtPlayGUI::instance().videoWidget()->getVideoOutput();
   SwsContext* sub_convert_ctx = nullptr;
 
   Packet pkt;

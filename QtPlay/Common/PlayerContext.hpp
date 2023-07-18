@@ -84,5 +84,3 @@ struct PlayerContext final {
   bool demuxerEOF() const { return demuxer_eof.load(std::memory_order_acquire); }
   void setDemuxerEOF(bool eof) { demuxer_eof.store(eof, std::memory_order_release); }
 };
-
-inline GLWindow* videoWidget = nullptr;

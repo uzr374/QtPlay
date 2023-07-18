@@ -1,7 +1,5 @@
 #pragma once
 
-#define __STDC_CONSTANT_MACROS
-
 extern "C" {
 #include <libavutil/avutil.h>
 }

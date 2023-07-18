@@ -1,14 +1,16 @@
 #pragma once
 
-#include <QToolBar>
-
 #include "CSlider.hpp"
+
+#include <QToolBar>
+#include <QTimer>
 
 class ToolBar final : public QToolBar {
   Q_OBJECT;
   Q_DISABLE_COPY_MOVE(ToolBar);
 
  private:
+	 QTimer updateTimer;
   CSlider *playSlider = nullptr, *volSlider = nullptr;
   double vol_percent = 1.0;
 

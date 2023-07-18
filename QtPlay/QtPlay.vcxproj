@@ -122,8 +122,8 @@
     <ClCompile Include="Common\QtPlayCommon.cpp" />
     <ClCompile Include="Demux\DemuxThread.cpp" />
     <ClCompile Include="Demux\SeekInfo.cpp" />
-    <ClCompile Include="PlaybackEventFilter.cpp" />
-    <ClCompile Include="QtPlayGUI.cpp" />
+    <ClCompile Include="DislpayWidgetCommon.cpp" />
+    <ClCompile Include="PlayerCore.cpp" />
     <ClCompile Include="VideoOutput\GLCommon.cpp" />
     <ClCompile Include="VideoOutput\GLWidget.cpp" />
     <ClCompile Include="VideoOutput\GLWindow.cpp" />
@@ -134,7 +134,9 @@
     <ClCompile Include="Widgets\LoggerWidget.cpp" />
     <ClCompile Include="Widgets\MainWindow.cpp" />
     <ClCompile Include="Widgets\MenuBar.cpp" />
+    <ClCompile Include="Widgets\PlaybackEventFilter.cpp" />
     <ClCompile Include="Widgets\Playlist.cpp" />
+    <ClCompile Include="Widgets\QtPlayGUI.cpp" />
     <ClCompile Include="Widgets\RDFTDock.cpp" />
     <ClCompile Include="Widgets\StatusBar.cpp" />
     <ClCompile Include="Widgets\ToolBar.cpp" />
@@ -150,11 +152,13 @@
     <ClInclude Include="AVWrappers\Stream.hpp" />
     <ClInclude Include="AVWrappers\Subtitle.hpp" />
     <ClInclude Include="Demux\SeekInfo.hpp" />
-    <ClInclude Include="PlaybackEventFilter.hpp" />
-    <ClInclude Include="QtPlayGUI.hpp" />
+    <QtMoc Include="DisplayWidgetCommon.hpp" />
+    <ClInclude Include="PlayerCore.hpp" />
     <ClInclude Include="VideoOutput\GLCommon.hpp" />
     <ClInclude Include="VideoOutput\GLShaders.hpp" />
     <ClInclude Include="Visualizations\AudioFrameF.hpp" />
+    <QtMoc Include="Widgets\PlaybackEventFilter.hpp" />
+    <ClInclude Include="Widgets\QtPlayGUI.hpp" />
     <QtMoc Include="Widgets\WaveDock.hpp" />
     <QtMoc Include="Widgets\VideoDock.hpp" />
     <QtMoc Include="Widgets\VideoDisplayWidget.hpp" />

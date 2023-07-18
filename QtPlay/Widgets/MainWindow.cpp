@@ -1,104 +1,25 @@
+#include "QtPlayGUI.hpp"
+#include "MenuBar.hpp"
 #include "MainWindow.hpp"
+#include "../PlayerCore.hpp"
 
 #include <QApplication>
+#include <QDockWidget>
 #include <QFileDialog>
+#include <QDialog>
 #include <QScreen>
 #include <QSettings>
 #include <QStyle>
-
-#include "LoggerDock.hpp"
-#include "MenuBar.hpp"
-#include "Playlist.hpp"
-#include "RDFTDock.hpp"
-#include "StatusBar.hpp"
-#include "ToolBar.hpp"
-#include "VideoDisplayWidget.hpp"
-#include "VideoDock.hpp"
-#include "WaveDock.hpp"
+#include <QGridLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QCloseEvent>
 
 MainWindow::MainWindow() : QMainWindow((QWidget*)nullptr) {
   setObjectName("mainWindow");
   setWindowTitle(tr("QtPlay"));
-  setWindowIcon(style()->standardIcon(QStyle::SP_TitleBarMenuButton));
 
-  auto cW = new QWidget;
-  setCentralWidget(cW);
-
-  setDockNestingEnabled(true);
-  setAnimated(false);
-  setDockOptions(QMainWindow::AllowNestedDocks | QMainWindow::AllowTabbedDocks);
-
-  auto lgrD = new LoggerDock(this);
-  addDockWidget(Qt::RightDockWidgetArea, lgrD);
-  auto logger = qobject_cast<LoggerWidget*>(lgrD->widget());
-
-  // Set up menu bar first
-  auto mBar = new MenuBar;
-  setMenuBar(mBar);
-
-  auto statBar = new StatusBar;
-  setStatusBar(statBar);
-
-  auto tBar = new ToolBar(mBar->getBasicActions());
-  addToolBar(Qt::BottomToolBarArea, tBar);
-
-  auto videoD = new VideoDock(this, logger);
-  addDockWidget(Qt::LeftDockWidgetArea, videoD);
-  tabifyDockWidget(lgrD, videoD);
-
-  auto videoW = qobject_cast<VideoDisplayWidget*>(videoD->widget());
-  videoW->setContextMenu(mBar->getTopLevelMenus());
-
-  auto waveD = new WaveDock(this);
-  addDockWidget(Qt::RightDockWidgetArea, waveD);
-
-  auto rdftD = new RDFTDock(this);
-  addDockWidget(Qt::RightDockWidgetArea, rdftD);
-  tabifyDockWidget(waveD, rdftD);
-
-  auto plD = new PlaylistDock(this);
-  addDockWidget(Qt::RightDockWidgetArea, plD);
-  tabifyDockWidget(rdftD, plD);
-  auto plW = qobject_cast<PlaylistWidget*>(plD->widget());
-
-  cW->hide();  // Hide placeholder central widget
-
-  // Set up all inter-widgets connections after UI setup
-  connect(mBar, &MenuBar::sigAlwaysOnTopToggled, this,
-          &MainWindow::handleAlwaysOnTop);
-  connect(mBar, &MenuBar::sigOpenFileTriggered, this,
-          &MainWindow::triggerFileOpenDialog);
-  connect(mBar, &MenuBar::sigCloseStreamTriggered, videoW,
-          &VideoDisplayWidget::closeStream);
-  connect(mBar, &MenuBar::sigPausePlayback, videoW,
-          &VideoDisplayWidget::pausePlayback);
-  connect(mBar, &MenuBar::sigResumePlayback, videoW,
-          &VideoDisplayWidget::resumePlayback);
-  connect(mBar, &MenuBar::sigClearPlaylist, plW, &PlaylistWidget::clearList);
-
-  connect(tBar, &ToolBar::sigNewVol, videoW, &VideoDisplayWidget::setVol);
-  connect(tBar, &ToolBar::sigReqSeek, videoW, &VideoDisplayWidget::requestSeek);
-
-  connect(videoW, &VideoDisplayWidget::sigUpdatePlaybackPos, tBar,
-          &ToolBar::updatePlaybackPos);
-  connect(videoW, &VideoDisplayWidget::sigUpdatePlaybackPos, statBar,
-          &StatusBar::updatePlaybackPos);
-  connect(videoW, &VideoDisplayWidget::sigResetControls, tBar,
-          &ToolBar::resetPlaybackPos);
-  connect(videoW, &VideoDisplayWidget::sigResetControls, statBar,
-          &StatusBar::resetPlaybackPos);
-
-  connect(this, &MainWindow::sigOpenURL, videoW, &VideoDisplayWidget::openURL);
-  connect(this, &MainWindow::sigAddPlaylistEntry, plW,
-          &PlaylistWidget::addEntry);
-  connect(plW, &PlaylistWidget::sigOpenItem, videoW,
-          &VideoDisplayWidget::openURL);
-
-  // Set window geometry only after UI setup is finished
-  setBestWindowGeometry();
-  videoW->setVol(tBar->getVolumePercent());
-  videoW->setVisWidgets(qobject_cast<VisCommon*>(waveD->widget()),
-                        qobject_cast<VisCommon*>(rdftD->widget()));
+  QtPlayGUI::init_for(this);
 }
 
 MainWindow::~MainWindow() {
@@ -107,6 +28,28 @@ MainWindow::~MainWindow() {
   sets.setValue("MainWindow/WindowGeom", geometry());
   sets.setValue("MainWindow/OnTop",
                 bool(windowFlags() & Qt::WindowStaysOnTopHint));
+}
+
+void MainWindow::closeEvent(QCloseEvent* evt) {
+    if (PlayerCore::instance().isActive()) {
+        QDialog closeDialog(this);
+        auto dlout = new QGridLayout;
+        dlout->addWidget(new QLabel(tr("Are you sure you want to exit?")), 0, 0, Qt::AlignCenter);
+        auto accButton = new QPushButton(tr("Yes")), rejButton = new QPushButton(tr("No"));
+        dlout->addWidget(rejButton, 1, 0, Qt::AlignCenter);
+        dlout->addWidget(accButton, 1, 1, Qt::AlignCenter);
+        connect(accButton, &QPushButton::clicked, &closeDialog, &QDialog::accept);
+        connect(rejButton, &QPushButton::clicked, &closeDialog, &QDialog::reject);
+        closeDialog.setLayout(dlout);
+        const auto res = closeDialog.exec();
+        if (res == QDialog::Rejected) {
+            evt->ignore();
+            return;
+        }
+    }
+
+    PlayerCore::instance().shutDown();
+    return QMainWindow::closeEvent(evt);
 }
 
 void MainWindow::setBestWindowGeometry() {
