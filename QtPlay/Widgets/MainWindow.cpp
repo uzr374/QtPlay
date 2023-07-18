@@ -31,7 +31,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::closeEvent(QCloseEvent* evt) {
-    if (PlayerCore::instance().isActive()) {
+    if (playerCore.isActive()) {
         QDialog closeDialog(this);
         auto dlout = new QGridLayout;
         dlout->addWidget(new QLabel(tr("Are you sure you want to exit?")), 0, 0, Qt::AlignCenter);
@@ -48,7 +48,7 @@ void MainWindow::closeEvent(QCloseEvent* evt) {
         }
     }
 
-    PlayerCore::instance().shutDown();
+    playerCore.shutDown();
     return QMainWindow::closeEvent(evt);
 }
 

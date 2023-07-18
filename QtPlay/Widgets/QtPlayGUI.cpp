@@ -87,13 +87,13 @@ void QtPlayGUI::init_for(MainWindow* wnd) {
         &MainWindow::triggerFileOpenDialog);
     wnd->connect(mBar, &MenuBar::sigClearPlaylist, plW, &PlaylistWidget::clearList);
 
-    wnd->connect(tBar, &ToolBar::sigNewVol, [](double vol) {PlayerCore::instance().setVol(vol); });
-    wnd->connect(tBar, &ToolBar::sigReqSeek, [](double pcnt) {PlayerCore::instance().reqSeek(pcnt); });
+    wnd->connect(tBar, &ToolBar::sigNewVol, [](double vol) {playerCore.setVol(vol); });
+    wnd->connect(tBar, &ToolBar::sigReqSeek, [](double pcnt) {playerCore.reqSeek(pcnt); });
 
-    wnd->connect(wnd, &MainWindow::sigOpenURL, [](QUrl url) { PlayerCore::instance().openURL(url); });
+    wnd->connect(wnd, &MainWindow::sigOpenURL, [](QUrl url) { playerCore.openURL(url); });
     wnd->connect(wnd, &MainWindow::sigAddPlaylistEntry, plW,
         &PlaylistWidget::addEntry);
-    wnd->connect(plW, &PlaylistWidget::sigOpenItem, [](QUrl url) { PlayerCore::instance().openURL(url); });
+    wnd->connect(plW, &PlaylistWidget::sigOpenItem, [](QUrl url) { playerCore.openURL(url); });
 
     // Set window geometry only after UI setup is finished
     wnd->setBestWindowGeometry();

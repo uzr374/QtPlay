@@ -24,7 +24,7 @@ bool PlayerCore::isActive() const {
 }
 
 static auto getVideoOutput() {
-    return QtPlayGUI::instance().videoWidget()->getVideoOutput();
+    return playerGUI.videoWidget()->getVideoOutput();
 }
 
 static void closeVideoOutput() {
@@ -33,13 +33,13 @@ static void closeVideoOutput() {
 }
 
 static void resetControls() {
-    QtPlayGUI::instance().toolBar()->resetPlaybackPos();
+    playerGUI.toolBar()->resetPlaybackPos();
 }
 
 void PlayerCore::openURL(QUrl url) {
     shutDown();
     if (url.isValid()) {
-        const auto audio_vol = QtPlayGUI::instance().toolBar()->getVolumePercent();
+        const auto audio_vol = playerGUI.toolBar()->getVolumePercent();
         player_inst =
             stream_open(url.isLocalFile() ? url.toLocalFile() : url.toString(),
                 audio_vol, viss);

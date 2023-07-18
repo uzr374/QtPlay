@@ -8,7 +8,7 @@ PlaybackEventFilter::~PlaybackEventFilter() {}
 
 bool PlaybackEventFilter::eventFilter(QObject* watched, QEvent* evt) {
 	if (evt->type() == QEvent::KeyPress) {
-		auto keyEvt = static_cast<const QKeyEvent* const>(evt);
+		auto keyEvt = static_cast<const QKeyEvent*>(evt);
 		const auto key = keyEvt->key();
         if (playerCore.isActive()) {
             if (key == Qt::Key_Space) {
