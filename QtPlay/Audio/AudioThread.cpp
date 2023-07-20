@@ -252,7 +252,7 @@ void AudioThread::run() {
     }
   };
 
-  auto flush_state = [&]() {
+  auto flush_state = [&] {
     step_pending = true;
     local_eof = false;
     swr_delay = 0.0;
