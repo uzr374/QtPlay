@@ -348,9 +348,9 @@ void AudioThread::run() {
       reopen_audio = false;
     }
 
-    const auto arbuf_empty = ctx.audio_rbuf.isEmpty();
-    local_eof = ctx.auddec.eof_state && arbuf_empty && resampled_data.empty() &&
-                filtered_frames.empty() && ctx.demuxerEOF();
+    local_eof = resampled_data.empty() &&
+                filtered_frames.empty() && ctx.audio_rbuf.isEmpty() &&
+        ctx.audioq.isEmpty() && (ctx.auddec.eof_state || ctx.demuxerEOF());
     step_pending &= !local_eof;
     const auto paused = (local_paused || local_eof) && !step_pending;
     const auto adev_stat = SDL_GetAudioDeviceStatus(audio_dev);

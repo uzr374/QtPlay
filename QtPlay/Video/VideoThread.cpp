@@ -99,7 +99,7 @@ void VideoThread::run() {
     }
   };
 
-  auto cleanup_func = [&]() {
+  auto cleanup_func = [&] {
     flush_state();
     sws_freeContext(sub_convert_ctx);
     videoWidget->setOpened(false);
@@ -136,7 +136,7 @@ void VideoThread::run() {
       }
     }
 
-    local_eof = ctx.viddec.eof_state && filtered_frames.empty() && ctx.demuxerEOF();
+    local_eof = filtered_frames.empty() && ctx.videoq.isEmpty() && (ctx.viddec.eof_state || ctx.demuxerEOF());
     step_pending = step_pending && !local_eof;
     const bool paused = (local_paused && !step_pending) || local_eof;
 
