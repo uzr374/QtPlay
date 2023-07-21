@@ -136,7 +136,7 @@ void VideoThread::run() {
       }
     }
 
-    local_eof = filtered_frames.empty() && ctx.videoq.isEmpty() && (ctx.viddec.eof_state || ctx.demuxerEOF());
+    local_eof = filtered_frames.empty() && ctx.videoq.isEmpty() && (ctx.viddec.eof_state || is_attached_pic || ctx.demuxerEOF());
     step_pending = step_pending && !local_eof;
     const bool paused = (local_paused && !step_pending) || local_eof;
 
@@ -197,7 +197,7 @@ void VideoThread::run() {
       const auto maybe_sleep = time_left >= 0.0015 && !force_forward;
       bool display = !maybe_sleep;
 
-      if (maybe_sleep && (filtered_frames.size() >= preferred_buffered_frames ||
+      if (maybe_sleep && (filtered_frames.size() >= preferred_buffered_frames || //Check this 'if' thoroughly
                           ctx.viddec.eof_state)) {
         const auto remaining_time = time_left;
         const auto ms = int(1000 * remaining_time);
