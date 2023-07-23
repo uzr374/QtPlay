@@ -39,7 +39,7 @@ class PlaylistWidget final : public QWidget {
   int cur_item_row = -1;
 
 private:
-    void playNextImpl();
+    Q_INVOKABLE void playNextImpl();
 
  public:
   PlaylistWidget(QWidget* parent);
