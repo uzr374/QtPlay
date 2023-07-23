@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QtGlobal>
+#include <vector>
 
 class MainWindow;
 class LoggerWidget;
@@ -45,6 +46,7 @@ public:
 	StatusBar* statBar();
 	ToolBar* toolBar();
 	PlaylistWidget* playlist();
+	std::vector<class VisCommon*> audioVis();
 };
 
 #define playerGUI QtPlayGUI::instance()

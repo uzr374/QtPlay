@@ -117,3 +117,7 @@ StatusBar* QtPlayGUI::statBar() {
 PlaylistWidget* QtPlayGUI::playlist() {
     return plw;
 }
+
+std::vector<class VisCommon*> QtPlayGUI::audioVis() {
+    return { wavew, rdftw };
+}

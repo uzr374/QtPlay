@@ -11,15 +11,11 @@ class PlayerCore final {
 	PlayerCore();
 private:
 	std::unique_ptr<class PlayerContext> player_inst = nullptr;
-	std::vector<class VisCommon*> viss;
 
 public:
 	~PlayerCore();
 
-	static PlayerCore& instance() {
-		static PlayerCore inst;
-		return inst;
-	}
+	static PlayerCore& instance();
 
 	void openURL(QUrl url);
 	void shutDown();

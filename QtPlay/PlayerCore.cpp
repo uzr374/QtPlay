@@ -9,14 +9,20 @@ PlayerCore::PlayerCore() {}
 PlayerCore::~PlayerCore() {}
 
 static std::unique_ptr<PlayerContext> stream_open(
-    QString filename, double audio_vol, std::vector<VisCommon*> viss) {
+    QString filename) {
     try {
+        const auto audio_vol = playerGUI.toolBar()->getVolumePercent();
         return std::make_unique<PlayerContext>(filename.toStdString(), audio_vol,
-            viss);
+            playerGUI.audioVis());
     }
     catch (...) {
         return nullptr;
     }
+}
+
+PlayerCore& PlayerCore::instance() {
+    static PlayerCore inst;
+    return inst;
 }
 
 bool PlayerCore::isActive() const {
@@ -39,10 +45,9 @@ static void resetControls() {
 void PlayerCore::openURL(QUrl url) {
     shutDown();
     if (url.isValid()) {
-        const auto audio_vol = playerGUI.toolBar()->getVolumePercent();
+        
         player_inst =
-            stream_open(url.isLocalFile() ? url.toLocalFile() : url.toString(),
-                audio_vol, viss);
+            stream_open(url.isLocalFile() ? url.toLocalFile() : url.toString());
         if (!player_inst) {
             closeVideoOutput();
         }
