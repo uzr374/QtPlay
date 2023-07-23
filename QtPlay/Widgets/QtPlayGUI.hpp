@@ -46,7 +46,7 @@ public:
 	StatusBar* statBar();
 	ToolBar* toolBar();
 	PlaylistWidget* playlist();
-	std::vector<class VisCommon*> audioVis();
+	std::vector<VisCommon*> audioVis();
 };
 
 #define playerGUI QtPlayGUI::instance()
