@@ -9,7 +9,7 @@
 
 ToolBar::ToolBar(QList<QAction*> acts) : QToolBar(nullptr), updateTimer(this) {
   setObjectName("toolBar");
-  setWindowTitle(tr("toolBar"));
+  setWindowTitle(tr("Toolbar"));
 
   for (auto act : acts) {
     addAction(act);

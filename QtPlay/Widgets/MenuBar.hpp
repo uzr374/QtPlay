@@ -10,12 +10,12 @@ class MenuBar final : public QMenuBar {
  public:
   QMenu *fileMenu = nullptr, *viewMenu = nullptr, *playbackMenu = nullptr,
         *pllistMenu = nullptr;
-  QAction *fileOpenAct = nullptr, *stopPlaybackAct = nullptr,
-          *alwaysOnTopAct = nullptr, *pauseAct = nullptr, *resumeAct = nullptr,
-          *playlistClearAct = nullptr;
+  QAction* fileOpenAct = nullptr, * stopPlaybackAct = nullptr,
+      * alwaysOnTopAct = nullptr, * pauseAct = nullptr, * resumeAct = nullptr,
+      * playlistClearAct = nullptr, * playNextAct = nullptr, * playPrevAct = nullptr;
 
   QList<QMenu*> m_topLevelMenus;
-  QMenu context_menu;
+  QMenu context_menu; 
 
  public:
   MenuBar();

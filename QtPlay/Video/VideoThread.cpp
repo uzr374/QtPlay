@@ -29,7 +29,7 @@ void VideoThread::run() {
   /* no AV correction is done if too big error */
   constexpr auto AV_NOSYNC_THRESHOLD = 10.0;
   /* Preferred number of frames to keep in filtered_frames during playback */
-  constexpr auto preferred_buffered_frames = 2U;
+  constexpr auto preferred_buffered_frames = 2;
 
   const auto is_attached_pic = ctx.viddec.stream.isAttachedPic();
   auto step_pending = true, update_frame_timer = true, can_skip = true,

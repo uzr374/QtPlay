@@ -1,6 +1,8 @@
 #include "PlayerContext.hpp"
 
 #include "../Demux/DemuxThread.hpp"
+#include "../Widgets/QtPlayGUI.hpp"
+#include "../Widgets/Playlist.hpp"
 
 PlayerContext::PlayerContext(const std::string& url, std::float_t audio_volume,
                              std::vector<VisCommon*> aviss)
@@ -56,4 +58,6 @@ void PlayerContext::seek_by_percent(double percent) {
   request_seek(false, percent);
 }
 
-void PlayerContext::notifyEOF(){ }
+void PlayerContext::notifyEOF(){ 
+    playerGUI.playlist()->playNext();
+}

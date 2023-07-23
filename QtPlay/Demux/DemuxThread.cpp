@@ -478,7 +478,7 @@ void DemuxThread::run() {
   }
 
   if (!ctx.video_thr && !ctx.audio_thr) {
-    av_log(NULL, AV_LOG_FATAL, "Failed to open file '%s'", ic->url);
+    logMsg("Failed to open url: '%s'", ic->url);
     return;
   }
 

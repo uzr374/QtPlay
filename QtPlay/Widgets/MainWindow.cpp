@@ -99,15 +99,14 @@ void MainWindow::handleAlwaysOnTop(bool ontop) {
   const bool currently_on_top = (wFlags & on_top_bit);
   if (currently_on_top != ontop) {
     setWindowFlags((ontop ? (wFlags | on_top_bit) : (wFlags & ~on_top_bit)));
-    show();  // setWindowFlags() hides window, so show it
+    show();  // setWindowFlags() hides the window, so show it
   }
 }
 
 void MainWindow::triggerFileOpenDialog() {
-  const auto url = QFileDialog::getOpenFileUrl(this, tr("Open file"));
+  const auto url = QFileDialog::getOpenFileUrl(this, tr("Select file"));
   if (!url.isEmpty()) {
     const auto strUrl = url.toString();
     emit sigAddPlaylistEntry(strUrl, QString());
-    emit sigOpenURL(url);
   }
 }

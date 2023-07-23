@@ -14,7 +14,6 @@ class MainWindow final : public QMainWindow {
   void setBestWindowGeometry();
   void closeEvent(QCloseEvent* evt) override;
 
-  Q_SIGNAL void sigOpenURL(QUrl url);
   Q_SIGNAL void sigAddPlaylistEntry(QString url, QString title);
 
   Q_SLOT void handleAlwaysOnTop(bool ontop);

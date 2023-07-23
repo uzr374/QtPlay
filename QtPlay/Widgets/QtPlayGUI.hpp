@@ -44,6 +44,7 @@ public:
 	VideoDisplayWidget* videoWidget();
 	StatusBar* statBar();
 	ToolBar* toolBar();
+	PlaylistWidget* playlist();
 };
 
 #define playerGUI QtPlayGUI::instance()

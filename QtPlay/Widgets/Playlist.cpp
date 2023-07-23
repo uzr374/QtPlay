@@ -1,5 +1,7 @@
 #include "Playlist.hpp"
 
+#include "../PlayerCore.hpp"
+
 #include <QGridLayout>
 
 PlaylistItem::PlaylistItem(QListWidget* parent, const QUrl& _url,
@@ -12,7 +14,7 @@ PlaylistItem::PlaylistItem(QListWidget* parent, const QUrl& _url,
     title = url.isLocalFile() ? url.fileName() : url.toString();
   }
 
-  setToolTip(url.toString());
+  setToolTip(title);
   setText(title);
 }
 
@@ -23,6 +25,16 @@ QUrl PlaylistItem::URL() const { return url; }
 QString PlaylistItem::URLStr() const { return url.toString(); }
 
 QString PlaylistItem::titleStr() const { return title; }
+
+void PlaylistItem::setPlayingState(bool playing) {
+    const static QBrush playing_color = QBrush(QColor(255, 191, 128)), default_color = QBrush();
+    is_playing = playing;
+    setBackground(is_playing ? playing_color : default_color);
+}
+
+bool PlaylistItem::isPlaying() const {
+    return is_playing;
+}
 
 PlaylistWidget::PlaylistWidget(QWidget* parent) {
   setObjectName("playlistWidget");
@@ -87,10 +99,67 @@ void PlaylistWidget::clearList() {
   saveList();
 }
 
-void PlaylistWidget::handleItemDoubleClick(QListWidgetItem* it) {
-  auto entry = static_cast<PlaylistItem*>(it);
-  emit sigOpenItem(QUrl(entry->URLStr()));
+void PlaylistWidget::unsetCurrentlyPlaying() {
+    if (current_item) {
+        current_item->setPlayingState(false);
+        current_item = nullptr;
+    }
 }
+
+void PlaylistWidget::handleItemDoubleClick(QListWidgetItem* it) {
+    unsetCurrentlyPlaying();
+  auto entry = static_cast<PlaylistItem*>(it);
+  setCurrentIndexFromItem(entry);
+  try {
+      playerCore.openURL(entry->URL());
+  }
+  catch (...) {
+      return;
+  }
+  
+  entry->setPlayingState(true);
+  current_item = entry;
+}
+
+void PlaylistWidget::setCurrentIndexFromItem(PlaylistItem* it) {
+    if (!it) {
+        cur_item_row = -1;
+    }
+    else {
+        cur_item_row = m_list->row(it);
+    }
+    m_list->setCurrentRow(cur_item_row);
+}
+
+void  PlaylistWidget::playEntryByRow(int cur_row) {
+    if (cur_row < 0 || cur_row >= m_list->count() - 1) return;
+    cur_item_row = cur_row;
+    auto cur_item = static_cast<PlaylistItem*>(m_list->item(cur_item_row));
+    handleItemDoubleClick(cur_item);
+}
+
+void PlaylistWidget::playPrevItem() {
+    const auto count = m_list->count();
+    if (cur_item_row <= 0 || count <= 0) return;
+    auto next_row = --cur_item_row;
+    playEntryByRow(next_row);
+}
+
+void PlaylistWidget::playNextItem() {
+    const auto count = m_list->count();
+    if (count <= 0 || cur_item_row >= count - 1) return;
+    auto next_row = ++cur_item_row;
+    playEntryByRow(next_row);
+}
+
+void PlaylistWidget::playNext() {
+    QMetaObject::invokeMethod(this, "playNextImpl", Qt::QueuedConnection);
+}
+
+void  PlaylistWidget::playNextImpl() {
+    playNextItem();
+}
+
 
 PlaylistDock::PlaylistDock(QWidget* parent) : QDockWidget(parent) {
   setObjectName("playlistDock");
